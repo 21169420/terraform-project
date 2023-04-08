@@ -1,14 +1,17 @@
 #this file consists of code for instances and sg
 provider "aws" {
 region = "ap-south-1"
-access_key = "AKIAWLAREJ3GMCJ6SOPY"
-secret_key = "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"
+access_key = "AKIA6HZPVPGX2YEQZZHQ
+"
+secret_key = " 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
+"
 }
 
 resource "aws_instance" "one" {
   ami             = "ami-0d81306eddc614a45"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  key_name        = "
+Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "ap-south-1a"
   user_data       = <<EOF
@@ -27,7 +30,8 @@ EOF
 resource "aws_instance" "two" {
   ami             = "ami-0d81306eddc614a45"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  key_name        = "
+Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "ap-south-1b"
   user_data       = <<EOF
@@ -46,7 +50,8 @@ EOF
 resource "aws_instance" "three" {
   ami             = "ami-0d81306eddc614a45"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  key_name        = "
+Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "ap-south-1b"
   tags = {
@@ -57,7 +62,8 @@ resource "aws_instance" "three" {
 resource "aws_instance" "four" {
   ami             = "ami-0d81306eddc614a45"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  key_name        = "
+Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
   availability_zone = "ap-south-1b"
   tags = {
