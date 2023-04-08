@@ -1,6 +1,6 @@
 resource "aws_elb" "bar" {
-  name               = "raham-terraform-elb"
-  availability_zones = ["ap-south-1a", "ap-south-1b"]
+  name               = "gnana-terraform-elb"
+  availability_zones = ["us-west-1a", "us-west-1c"]
 
   listener {
     instance_port     = 80
@@ -21,18 +21,18 @@ resource "aws_elb" "bar" {
   cross_zone_load_balancing = true
   idle_timeout              = 400
   tags = {
-    Name = "raham-tf-elb"
+    Name = "gnana-tf-elb"
   }
 }
 
-resource "aws_rds_cluster" "default" {
-  cluster_identifier      = "aurora-cluster-demo"
-  engine                  = "aurora-mysql"
-  engine_version          = "5.7.mysql_aurora.2.11.2"
-  availability_zones      = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
-  database_name           = "mydb"
-  master_username         = "foo"
-  master_password         = "Rahamshaik#444555"
-  backup_retention_period = 5
-  preferred_backup_window = "07:00-09:00"
-}
+###resource "aws_rds_cluster" "default" {
+#  cluster_identifier      = "aurora-cluster-demo"
+#  engine                  = "aurora-mysql"
+#  engine_version          = "5.7.mysql_aurora.2.11.2"
+#  availability_zones      = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
+#  database_name           = "mydb"
+#  master_username         = "gnana"
+#  master_password         = "gnana@1999"
+#  backup_retention_period = 5
+#  preferred_backup_window = "07:00-09:00"
+} 
