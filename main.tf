@@ -1,21 +1,21 @@
 #this file consists of code for instances and sg
 provider "aws" {
-region = "ap-south-1"
-access_key = "AKIAWLAREJ3GMCJ6SOPY"
-secret_key = "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"
+region = "us-west-1"
+access_key = "AKIA6HZPVPGX2YEQZZHQ"
+secret_key = "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"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-09c5c62bac0d0634e"
   instance_type   = "t2.micro"
   key_name        = "rrraham"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-west-1a"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
-yum install httpd -y
-systemctl start httpd
+#yum install httpd -y
+#systemctl start httpd
 chkconfig httpd on
 echo "hai all this is my app created by terraform infrastructurte by raham sir server-1" > /var/www/html/index.html
 EOF
@@ -25,11 +25,11 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-09c5c62bac0d0634e"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  #key_name        = "rrraham"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-west-1c"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -44,22 +44,22 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-09c5c62bac0d0634e5"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  #key_name        = "rrraham"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "app-server-1"
   }
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-0d81306eddc614a45"
+  ami             = "ami-09c5c62bac0d0634e"
   instance_type   = "t2.micro"
-  key_name        = "rrraham"
+  #key_name        = "rrraham"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "app-server-2"
   }
@@ -90,17 +90,30 @@ resource "aws_security_group" "five" {
 }
 
 resource "aws_s3_bucket" "six" {
-  bucket = "rahamshaikterra77889900"
+  bucket = "gnana77889900"
 }
 
 resource "aws_iam_user" "seven" {
-name = "rahamuser11" 
+name = "Terraform" 
 }
 
 resource "aws_ebs_volume" "eight" {
- availability_zone = "ap-south-1b"
+ availability_zone = "us-west-1c"
   size = 40
   tags = {
     Name = "ebs-001"
   }
 }
+
+resource "aws_rds_cluster" "default" {
+  cluster_identifier      = "aurora-cluster-demo"
+  engine                  = "aurora-mysql"
+  engine_version          = "5.7.mysql_aurora.2.10.2"
+  availability_zones      = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  database_name           = "mydb"
+  master_username         = "gnana"
+  master_password         = "gnana@1999"
+  backup_retention_period = 5
+  preferred_backup_window = "07:00-09:00"
+}
+
