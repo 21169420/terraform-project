@@ -1,16 +1,16 @@
 #this file consists of code for instances and sg
 provider "aws" {
-region = "ap-south-1"
+region = "us-east-1"
 access_key = "AKIA6HZPVPGXXCW4OMAP"
 secret_key = " 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"
 }
 
 resource "aws_instance" "one" {
-  ami             = "ami-09f7fbc41963e146f"
+  ami             = "ami-022e1a32d3f742bd8"
   instance_type   = "t2.micro"
-  key_name        = "mumbai-linux-keypair"
+  key_name        = "Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-east-1a"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -25,11 +25,11 @@ EOF
 }
 
 resource "aws_instance" "two" {
-  ami             = "ami-09f7fbc41963e146f"
+  ami             = "ami-022e1a32d3f742bd8"
   instance_type   = "t2.micro"
-  key_name        = "mumbai-linux-keypair"
+  key_name        = "Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-east-1b"
   user_data       = <<EOF
 #!/bin/bash
 sudo -i
@@ -44,23 +44,22 @@ EOF
 }
 
 resource "aws_instance" "three" {
-  ami             = "ami-09f7fbc41963e146f"
+  ami             = "ami-022e1a32d3f742bd8"
   instance_type   = "t2.micro"
-  key_name        = "
-"
+  key_name        = "Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "app-server-1"
   }
 }
 
 resource "aws_instance" "four" {
-  ami             = "ami-09f7fbc41963e146f"
+  ami             = "ami-022e1a32d3f742bd8"
   instance_type   = "t2.micro"
-  key_name        = "mumbai-linux-keypair"
+  key_name        = "Jenkins-Keypair_pem"
   vpc_security_group_ids = [aws_security_group.five.id]
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "app-server-2"
   }
@@ -91,15 +90,15 @@ resource "aws_security_group" "five" {
 }
 
 resource "aws_s3_bucket" "six" {
-  bucket = "rahamshaikterra77889900"
+  bucket = "gnana_reddy"
 }
 
 resource "aws_iam_user" "seven" {
-name = "rahamuser11" 
+name = "kops" 
 }
 
 resource "aws_ebs_volume" "eight" {
- availability_zone = "ap-south-1b"
+ availability_zone = "us-east-1a"
   size = 40
   tags = {
     Name = "ebs-001"
